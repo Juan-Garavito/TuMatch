@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ListMovie } from "./ListMovie"
 
 
-export function BoardMovie({movies, onDrop}) {
+export function BoardMovie({movies, setMovies}) {
 
     const [movieDrag, setMovieDrag] = useState(null)
 
@@ -15,7 +15,21 @@ export function BoardMovie({movies, onDrop}) {
         e.preventDefault()
     }
 
-    console.log(movies)
+    function onDrop(typelist, movieDrag){
+
+        if (typelist == "unseen" && movies.watched.some(movie => movie.idMovie == movieDrag.idMovie)) {
+            const watched = movies.watched.filter(movie => movie.idMovie != movieDrag.idMovie)
+            setMovies({ watched: watched, unseen: [...movies.unseen, movieDrag] })
+            return
+        }
+        
+        if (typelist == "watched" && movies.unseen.some(movie => movie.idMovie == movieDrag.idMovie)) {
+            const unseen = movies.unseen.filter(movie => movie.idMovie != movieDrag.idMovie)
+            setMovies({ watched: [...movies.watched, movieDrag], unseen: unseen })
+            return
+        }
+    }
+
 
     return (
         <section className="flex justify-center w-full">

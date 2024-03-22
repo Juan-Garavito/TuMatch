@@ -28,7 +28,6 @@ public class UserController {
     @PostMapping("/login.user")
     UserData UserData(@RequestBody LoginDTO user){
         UserData userd  = userService.LoginUser(user.getMail(), user.getPassword());
-        System.out.println(userd.toString());
         return userd;
     }
 }

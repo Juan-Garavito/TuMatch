@@ -7,8 +7,8 @@ import { UserContextProvider } from './context/UserContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <UserContextProvider>
-        <MovieContextProvider>
-            <App />
-        </MovieContextProvider>
+    <MovieContextProvider>
+        <App />
+    </MovieContextProvider>
     </UserContextProvider>
 )
